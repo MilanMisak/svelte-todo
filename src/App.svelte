@@ -17,7 +17,13 @@
 </script>
 
 <style>
+	form {
+		display: flex;
+	}
 
+	input {
+		flex: 1;
+	}
 </style>
 
 <form on:submit|preventDefault>

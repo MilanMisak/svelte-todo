@@ -10,21 +10,31 @@
 
 <style>
     div {
+        padding: 8px 12px;
         user-select: none;
+        cursor: pointer;
+    }
+
+    div:hover {
+        background-color: #eee;
     }
 
     .name {
 
     }
 
-    .cross {
+    .crossed {
         text-decoration: line-through;
+    }
+
+    .remove {
+        float: right;
     }
 </style>
 
 <div on:click={toggleDone}>
-    <span class="name" class:cross={todo.done}>{todo.name}</span>
+    <span class="name" class:crossed={todo.done}>{todo.name}</span>
     {#if todo.done}
-        <span on:click|stopPropagation={() => dispatch('remove')}>remove</span>
+        <span class="remove" on:click|stopPropagation={() => dispatch('remove')}>remove</span>
     {/if}
 </div>
