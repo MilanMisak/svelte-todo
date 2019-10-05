@@ -2,8 +2,10 @@ import App from './App.svelte';
 
 const todos = [{
 	name: 'Water plants',
+	done: false
 }, {
-	name: 'Take rubbish out'
+	name: 'Take rubbish out',
+	done: true
 }];
 
 const app = new App({
