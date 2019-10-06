@@ -1,5 +1,8 @@
 <script>
     import {createEventDispatcher} from 'svelte';
+    import MdCheckCircle from 'svelte-icons/md/MdCheckCircle.svelte'
+    import MdRadioButtonUnchecked from 'svelte-icons/md/MdRadioButtonUnchecked.svelte'
+    import MdRemoveCircleOutline from 'svelte-icons/md/MdRemoveCircleOutline.svelte'
     
     const dispatch = createEventDispatcher();
 
@@ -9,32 +12,47 @@
 </script>
 
 <style>
-    div {
+    .todo {
+        display: flex;
+        align-items: center;
         padding: 8px 12px;
         user-select: none;
         cursor: pointer;
     }
-
-    div:hover {
+    .todo:hover {
         background-color: #eee;
     }
 
-    .name {
+    .icon {
+        height: 25px;
+    }
 
+    .name {
+        flex: 1;
+        padding: 0 10px;
     }
 
     .crossed {
         text-decoration: line-through;
     }
 
-    .remove {
-        float: right;
+    .remove-icon:hover {
+        color: #d00;
     }
 </style>
 
-<div on:click={toggleDone}>
+<div class="todo" on:click={toggleDone}>
+    <span class="icon check-icon">
+        {#if todo.done}
+            <MdCheckCircle />
+        {:else}
+            <MdRadioButtonUnchecked />
+        {/if}
+    </span>
     <span class="name" class:crossed={todo.done}>{todo.name}</span>
     {#if todo.done}
-        <span class="remove" on:click|stopPropagation={() => dispatch('remove')}>remove</span>
+        <div class="icon remove-icon" on:click|stopPropagation={() => dispatch('remove')}>
+            <MdRemoveCircleOutline />
+        </div>
     {/if}
 </div>
