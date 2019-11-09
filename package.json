@@ -27,6 +27,6 @@
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev",
     "lint": "eslint src --ext .js,.svelte",
-    "format": "prettier --write '{public,src}/**/*.{css,html,js,svelte}' --single-quote --tab-width 4"
+    "format": "prettier --write '{public,src}/**/*.{css,html,js,svelte}'"
   }
 }
