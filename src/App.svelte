@@ -1,5 +1,5 @@
 <script>
-    import {crossfade, slide} from 'svelte/transition';
+    import {crossfade} from 'svelte/transition';
     import {flip} from 'svelte/animate';
     import {quintOut} from 'svelte/easing';
     import MdAddCircle from 'svelte-icons/md/MdAddCircle.svelte'
@@ -22,7 +22,7 @@
     const [send, receive] = crossfade({
         duration: d => Math.sqrt(d * 200),
 
-        fallback(node, params) {
+        fallback(node/*, params*/) {
             const style = getComputedStyle(node),
                 transform = style.transform === 'none' ? '' : style.transform;
 
