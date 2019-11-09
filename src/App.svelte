@@ -1,10 +1,10 @@
 <script>
-    import {crossfade} from 'svelte/transition';
-    import {flip} from 'svelte/animate';
-    import {quintOut} from 'svelte/easing';
-    import MdAddCircle from 'svelte-icons/md/MdAddCircle.svelte'
-    import MdMoreVert from 'svelte-icons/md/MdMoreVert.svelte'
-    import MdClear from 'svelte-icons/md/MdClear.svelte'
+    import { crossfade } from 'svelte/transition';
+    import { flip } from 'svelte/animate';
+    import { quintOut } from 'svelte/easing';
+    import MdAddCircle from 'svelte-icons/md/MdAddCircle.svelte';
+    import MdMoreVert from 'svelte-icons/md/MdMoreVert.svelte';
+    import MdClear from 'svelte-icons/md/MdClear.svelte';
     import Todo from './Todo.svelte';
 
     let newItem = '',
@@ -13,16 +13,20 @@
     $: newItemTrimmed = newItem.trim();
 
     const addTodo = () => {
-        todos = [{id: todos.length, name: newItemTrimmed, done: false}, ...todos];
+        todos = [
+            { id: todos.length, name: newItemTrimmed, done: false },
+            ...todos
+        ];
         newItem = '';
     };
 
-    const removeTodo = i => todos = [...todos.slice(0, i), ...todos.slice(i + 1)];
+    const removeTodo = i =>
+        (todos = [...todos.slice(0, i), ...todos.slice(i + 1)]);
 
     const [send, receive] = crossfade({
         duration: d => Math.sqrt(d * 200),
 
-        fallback(node/*, params*/) {
+        fallback(node /*, params*/) {
             const style = getComputedStyle(node),
                 transform = style.transform === 'none' ? '' : style.transform;
 
@@ -37,7 +41,7 @@
         }
     });
 
-    const toggleMenu = () => menuShown = !menuShown;
+    const toggleMenu = () => (menuShown = !menuShown);
 
     const clearCompleted = () => {
         todos = todos.filter(todo => !todo.done);
@@ -102,7 +106,10 @@
 </form>
 
 {#each todos as todo, i (todo.id)}
-    <div in:receive="{{key: todo.id}}" out:send="{{key: todo.id}}" animate:flip="{{duration: 200}}">
+    <div
+        in:receive={{ key: todo.id }}
+        out:send={{ key: todo.id }}
+        animate:flip={{ duration: 200 }}>
         <Todo {todo} on:remove={() => removeTodo(i)} />
     </div>
 {/each}
@@ -110,7 +117,10 @@
 {#if menuShown}
     <div class="menu">
         <div class="menu-item" on:click={clearCompleted}>
-            <span class="inline-icon"><MdClear /></span> <span style="flex: 1">Clear Completed</span>
+            <span class="inline-icon">
+                <MdClear />
+            </span>
+            <span style="flex: 1">Clear Completed</span>
         </div>
     </div>
 {/if}

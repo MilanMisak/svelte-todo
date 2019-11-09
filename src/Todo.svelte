@@ -1,12 +1,12 @@
 <script>
-    import {createEventDispatcher} from 'svelte';
-    import MdCheckCircle from 'svelte-icons/md/MdCheckCircle.svelte'
-    import MdRadioButtonUnchecked from 'svelte-icons/md/MdRadioButtonUnchecked.svelte'
-    import MdRemoveCircleOutline from 'svelte-icons/md/MdRemoveCircleOutline.svelte'
-    
+    import { createEventDispatcher } from 'svelte';
+    import MdCheckCircle from 'svelte-icons/md/MdCheckCircle.svelte';
+    import MdRadioButtonUnchecked from 'svelte-icons/md/MdRadioButtonUnchecked.svelte';
+    import MdRemoveCircleOutline from 'svelte-icons/md/MdRemoveCircleOutline.svelte';
+
     const dispatch = createEventDispatcher();
 
-    const toggleDone = () => todo.done = !todo.done;
+    const toggleDone = () => (todo.done = !todo.done);
 
     export let todo;
 </script>
@@ -51,7 +51,9 @@
     </span>
     <span class="name" class:crossed={todo.done}>{todo.name}</span>
     {#if todo.done}
-        <div class="icon remove-icon" on:click|stopPropagation={() => dispatch('remove')}>
+        <div
+            class="icon remove-icon"
+            on:click|stopPropagation={() => dispatch('remove')}>
             <MdRemoveCircleOutline />
         </div>
     {/if}
