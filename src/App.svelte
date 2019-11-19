@@ -93,11 +93,18 @@
         height: 30px;
         margin-right: 10px;
     }
+
+    .add-button:hover {
+        color: #3d3;
+    }
 </style>
 
 <form on:submit|preventDefault>
     <input bind:value={newItem} type="text" placeholder="I want to" autofocus />
-    <button disabled={!newItemTrimmed.length} on:click={addTodo}>
+    <button
+        class="add-button"
+        disabled={!newItemTrimmed.length}
+        on:click={addTodo}>
         <MdAddCircle />
     </button>
     <button on:click={toggleMenu}>
